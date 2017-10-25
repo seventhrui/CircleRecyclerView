@@ -7,11 +7,7 @@ import android.view.View;
 import com.seventh.criclerecycler.R;
 
 /**
- * usage:
- * author: kHRYSTAL
- * create time: 16/9/15
- * update time:
- * email: 723526676@qq.com
+ *
  */
 public class ScaleXViewMode implements ItemViewMode {
 

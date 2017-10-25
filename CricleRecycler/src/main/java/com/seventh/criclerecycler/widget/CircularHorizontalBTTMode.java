@@ -5,11 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * usage:
- * author: kHRYSTAL
- * create time: 17/8/16
- * update time:
- * email: 723526676@qq.com
+ *
  */
 
 public class CircularHorizontalBTTMode implements ItemViewMode {

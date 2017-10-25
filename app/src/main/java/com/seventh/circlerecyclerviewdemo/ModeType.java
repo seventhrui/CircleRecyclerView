@@ -6,11 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * usage:
- * author: kHRYSTAL
- * create time: 16/9/15
- * update time:
- * email: 723526676@qq.com
+ *
  */
 public class ModeType {
 

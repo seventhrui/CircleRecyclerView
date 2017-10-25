@@ -3,7 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/et_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minEms="5"/>
+        <Button
+            android:id="@+id/btn_goto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="跳转"/>
+    </LinearLayout>
     <com.seventh.criclerecycler.widget.CircleRecyclerView
         android:id="@+id/circle_rv"
         android:layout_width="match_parent"

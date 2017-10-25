@@ -7,17 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
+import com.seventh.circlerecyclerviewdemo.bean.CourseBean;
 import com.seventh.criclerecycler.widget.CircleRecyclerView;
 import com.seventh.criclerecycler.widget.CircularHorizontalBTTMode;
 import com.seventh.criclerecycler.widget.ItemViewMode;
@@ -30,8 +28,11 @@ public class MultiModeFragment extends Fragment {
     private CircleRecyclerView mCircleRecyclerView;
     private ItemViewMode mItemViewMode;
     private LinearLayoutManager mLayoutManager;
-    private List<Integer> mImgList;
+    private List<CourseBean> mImgList;
     private boolean mIsNotLoop;
+
+    private EditText et_position;
+    private Button btn_goto;
 
     private Integer[] mImgs = {
             R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
@@ -58,6 +59,9 @@ public class MultiModeFragment extends Fragment {
 
         mCircleRecyclerView = (CircleRecyclerView) view.findViewById(R.id.circle_rv);
 
+        et_position = (EditText) view.findViewById(R.id.et_position);
+        btn_goto = (Button) view.findViewById(R.id.btn_goto);
+
         mItemViewMode = new CircularHorizontalBTTMode(600, false);
         mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mIsNotLoop = true;
@@ -67,6 +71,20 @@ public class MultiModeFragment extends Fragment {
         mCircleRecyclerView.setNeedCenterForce(true);
         mCircleRecyclerView.setNeedLoop(!mIsNotLoop);
 
+        mImgList = new ArrayList<>();
+        for (int i=0;i<12;i++){
+            mImgList.add(new CourseBean());
+        }
+        TestAdapter adapter = new TestAdapter(getContext(), mImgList, mIsNotLoop);
+        mCircleRecyclerView.setAdapter(adapter);
+
+        adapter.addOnItemClickListener(new TestAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getContext(), "Clicked"+position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
         mCircleRecyclerView.setOnCenterItemClickListener(new CircleRecyclerView.OnCenterItemClickListener() {
             @Override
             public void onCenterItemClick(View v) {
@@ -74,45 +92,6 @@ public class MultiModeFragment extends Fragment {
             }
         });
 
-
-        mImgList = Arrays.asList(mImgs);
-        Collections.shuffle(mImgList);
-
-        mCircleRecyclerView.setAdapter(new A());
-
     }
 
-    class A extends RecyclerView.Adapter<VH> {
-
-        @Override
-        public VH onCreateViewHolder(ViewGroup parent, int viewType) {
-            VH h = new VH(LayoutInflater.from(getContext()).inflate(R.layout.item_h, parent, false));
-            return h;
-        }
-
-        @Override
-        public void onBindViewHolder(VH holder, int position) {
-            holder.tv.setText("Number :" + (position % mImgList.size()));
-            Glide.with(getContext())
-                    .load(mImgList.get(position % mImgList.size()))
-                    .bitmapTransform(new CropCircleTransformation(getContext()))
-                    .into(holder.iv);
-
-        }
-
-        @Override
-        public int getItemCount() {
-            return mIsNotLoop ? mImgList.size() : Integer.MAX_VALUE;
-        }
-    }
-
-    class VH extends RecyclerView.ViewHolder {
-        TextView tv;
-        ImageView iv;
-        public VH(View itemView) {
-            super(itemView);
-            tv = (TextView) itemView.findViewById(R.id.item_text);
-            iv = (ImageView) itemView.findViewById(R.id.item_img);
-        }
-    }
 }

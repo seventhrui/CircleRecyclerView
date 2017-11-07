@@ -48,7 +48,7 @@ public class CircularHorizontalBTTMode implements ItemViewMode {
 
         ViewCompat.setTranslationY(v, - 1 * (float) (1-Math.cos(rot * mTranslationRatio * mDegToRad)) * mCircleOffset + mYOffset);
 
-        float scale = 1.2f - Math.abs(parentHalfWidth - halfWidth - x) * mScalingRatio;
+        float scale = 1f - Math.abs(parentHalfWidth - halfWidth - x) * mScalingRatio;
         ViewCompat.setScaleX(v, scale);
         ViewCompat.setScaleY(v, scale);
     }

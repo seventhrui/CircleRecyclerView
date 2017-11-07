@@ -10,11 +10,11 @@ import android.view.View;
 
 public class CircularHorizontalBTTMode implements ItemViewMode {
 
-    private int mCircleOffset = 500;
+    private int mCircleOffset = 300;
     private float mDegToRad = 1.0f / 180.0f * (float) Math.PI;
     private float mScalingRatio = 0.001f;
     private float mTranslationRatio = 0.15f;
-    private float mYOffset = 100;
+    private float mYOffset = 0;
     private boolean mUseRotation = false;
 
     public CircularHorizontalBTTMode(float yOffset, boolean useRotation) {
@@ -31,8 +31,6 @@ public class CircularHorizontalBTTMode implements ItemViewMode {
         mTranslationRatio = translationRatio;
         mYOffset = yOffset;
         mUseRotation = useRotation;
-
-
     }
 
 
@@ -45,12 +43,12 @@ public class CircularHorizontalBTTMode implements ItemViewMode {
         if (mUseRotation) {
             ViewCompat.setPivotY(v, 0.0f);
             ViewCompat.setPivotX(v, halfWidth);
-            ViewCompat.setRotation(v, -rot * 0.05f);
+            ViewCompat.setRotation(v, rot * 0.05f);
         }
 
-        ViewCompat.setTranslationY(v, - 1 * (float) (-Math.cos(rot * mTranslationRatio * mDegToRad) + 1) * mCircleOffset + mYOffset);
+        ViewCompat.setTranslationY(v, - 1 * (float) (1-Math.cos(rot * mTranslationRatio * mDegToRad)) * mCircleOffset + mYOffset);
 
-        float scale = 1.0f - Math.abs(parentHalfWidth - halfWidth - x) * mScalingRatio;
+        float scale = 1.2f - Math.abs(parentHalfWidth - halfWidth - x) * mScalingRatio;
         ViewCompat.setScaleX(v, scale);
         ViewCompat.setScaleY(v, scale);
     }

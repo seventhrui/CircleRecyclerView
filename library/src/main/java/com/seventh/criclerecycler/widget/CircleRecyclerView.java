@@ -78,7 +78,7 @@ public class CircleRecyclerView extends RecyclerView implements View.OnClickList
             setClipToPadding(false);
             setClipChildren(false);
             mCurrentCenterChildView = findViewAtCenter();
-            //smoothScrollToView(mCurrentCenterChildView);
+            smoothScrollToView(mCurrentCenterChildView);
         }
 
         if (mCurrentCenterChildView != null)

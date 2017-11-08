@@ -25,7 +25,7 @@ public class CircqueHorizontalMode implements ItemViewMode {
         float radius = parent.getWidth() * 0.5f;//宽作为直径 取半径
         float rr = (float) (parent.getWidth() / Math.sqrt(3));//120度大圆半径
 
-        Log.e("applyToView", "applyToView: "+radius +"-----"+ rr +"-----"+ Math.sqrt(rr * rr - radius * radius) + "-----"+(rr-radius));
+        //Log.e("applyToView", "applyToView: "+radius +"-----"+ rr +"-----"+ Math.sqrt(rr * rr - radius * radius) + "-----"+(rr-radius));
 
         float halfWidth = v.getWidth() * 0.5f;
         float x = v.getX() + halfWidth; //取View控件的中心点 x

@@ -32,7 +32,10 @@ public class CircqueHorizontalMode implements ItemViewMode {
 
         float xx = Math.abs(x - radius);
 
-        float yy = (float) Math.sqrt(rr * rr - xx * xx);//计算偏移高度
+        float yy = 0;
+        if(rr>xx) {
+            yy = (float) Math.sqrt(rr * rr - xx * xx);//计算偏移高度
+        }
 
         float yOffset = (float) Math.sqrt(rr * rr - radius * radius);
 
